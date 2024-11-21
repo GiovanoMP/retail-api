@@ -29,4 +29,36 @@ class Transaction(TransactionBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+class SummaryResponse(BaseModel):
+    total_transactions: int
+    total_value: Decimal
+    unique_customers: int
+    total_quantity: int
+    average_unit_price: Decimal
+    unique_countries: int
+    unique_categories: int
+
+    class Config:
+        from_attributes = True
+
+class CategorySummary(BaseModel):
+    categoria: str
+    total_vendas: int
+    valor_total: Decimal
+    quantidade_total: int
+    ticket_medio: Decimal
+
+    class Config:
+        from_attributes = True
+
+class CountrySummary(BaseModel):
+    pais: str
+    total_vendas: int
+    valor_total: Decimal
+    quantidade_clientes: int
+    ticket_medio: Decimal
+
+    class Config:
+        from_attributes = True
