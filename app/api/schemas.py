@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import List
 from datetime import datetime
 from decimal import Decimal
 
@@ -21,12 +21,25 @@ class TransactionBase(BaseModel):
     Descricao: str
     Quantidade: int
 
-class TransactionCreate(TransactionBase):
-    pass
-
-class Transaction(TransactionBase):
+class TransactionResponse(BaseModel):
     id: int
     created_at: datetime
+    DataFatura: datetime
+    PrecoUnitario: Decimal
+    IDCliente: str
+    Pais: str
+    CategoriaProduto: str
+    CategoriaPreco: str
+    ValorTotalFatura: Decimal
+    FaturaUnica: bool
+    Ano: int
+    Mes: int
+    Dia: int
+    DiaSemana: int
+    NumeroFatura: str
+    CodigoProduto: str
+    Descricao: str
+    Quantidade: int
 
     class Config:
         from_attributes = True
@@ -40,25 +53,16 @@ class SummaryResponse(BaseModel):
     unique_countries: int
     unique_categories: int
 
-    class Config:
-        from_attributes = True
-
 class CategorySummary(BaseModel):
     categoria: str
     total_vendas: int
     valor_total: Decimal
     quantidade_total: int
-    ticket_medio: Decimal
-
-    class Config:
-        from_attributes = True
+    ticket_medio: float
 
 class CountrySummary(BaseModel):
     pais: str
     total_vendas: int
     valor_total: Decimal
     quantidade_clientes: int
-    ticket_medio: Decimal
-
-    class Config:
-        from_attributes = True
+    ticket_medio: float
