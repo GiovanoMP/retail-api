@@ -7,7 +7,7 @@ from decimal import Decimal
 from app.api.database import get_db
 from app.api.models import Transaction
 from app.api.schemas import (
-    Transaction as TransactionSchema,
+    TransactionResponse as TransactionSchema,  # Alterado aqui
     SummaryResponse,
     CategorySummary,
     CountrySummary
